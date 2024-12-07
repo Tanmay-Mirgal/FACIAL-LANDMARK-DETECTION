@@ -24,14 +24,8 @@ function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-  //  Load posenet
+  // Load posenet
   const runFacemesh = async () => {
-    // OLD MODEL
-    // const net = await facemesh.load({
-    //   inputResolution: { width: 640, height: 480 },
-    //   scale: 0.8,
-    // });
-    // NEW MODEL
     const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
     setInterval(() => {
       detect(net);
@@ -58,19 +52,16 @@ function App() {
       canvasRef.current.height = videoHeight;
 
       // Make Detections
-      // OLD MODEL
-      //       const face = await net.estimateFaces(video);
-      // NEW MODEL
-      const face = await net.estimateFaces({input:video});
+      const face = await net.estimateFaces({input: video});
       console.log(face);
 
       // Get canvas context
       const ctx = canvasRef.current.getContext("2d");
-      requestAnimationFrame(()=>{drawMesh(face, ctx)});
+      requestAnimationFrame(() => { drawMesh(face, ctx) });
     }
   };
 
-  useEffect(()=>{runFacemesh()}, []);
+  useEffect(() => { runFacemesh() }, []);
 
   return (
     <div className="App">
@@ -84,9 +75,9 @@ function App() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
+            zIndex: 9,
+            width: "100%",
+            height: "auto",
           }}
         />
 
@@ -99,9 +90,9 @@ function App() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
+            zIndex: 9,
+            width: "100%",
+            height: "auto",
           }}
         />
       </header>

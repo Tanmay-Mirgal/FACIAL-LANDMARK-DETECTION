@@ -14,7 +14,7 @@
     "react-webcam": "^5.2.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
